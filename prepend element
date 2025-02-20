@@ -1,0 +1,42 @@
+#include <stdio.h>
+
+#define MAX 1000
+
+int list[MAX], size = 0;
+
+// Function to prepend an element to the beginning of the array
+void prepend(int value) {
+    // Shift elements to the right
+    for (int i = size; i > 0; i--) {
+        list[i] = list[i - 1];
+    }
+    // Insert new element at index 0
+    list[0] = value;
+    size++; // Increase size
+}
+
+int main() {
+    int N, M, score, totalScore = 0;
+    
+    // Read number of balls
+    scanf("%d", &N);
+
+    // Read scores and prepend each score
+    for (int i = 0; i < N; i++) {
+        scanf("%d", &score);
+        prepend(score);
+    }
+
+    // Read M (number of last balls to consider)
+    scanf("%d", &M);
+
+    // Sum up the last M balls
+    for (int i = 0; i < M; i++) {
+        totalScore += list[i];
+    }
+
+    // Print the total score
+    printf("%d\n", totalScore);
+
+    return 0;
+}
