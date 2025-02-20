@@ -1,0 +1,46 @@
+#include <stdio.h>
+
+#define MAX 1000  // Define maximum array size
+
+int list[MAX], size = 0;  // Global array and size variable
+
+// Function to remove an element at a given index
+void removeAt(int removeIndex) {
+    for (int i = removeIndex; i < size; i++) {
+        list[i] = list[i + 1];  // Shift elements to the left
+    }
+    size--;  // Reduce size of the array
+}
+
+int main() {
+    int N, M, indexToRemove;
+    int totalScore = 0, score, index;
+
+    // Read the number of elements
+    scanf("%d", &N);
+
+    // Read elements into the array
+    for (index = 0; index < N; index++) {
+        scanf("%d", &list[index]);
+        size++;
+    }
+
+    // Read the number of removals
+    scanf("%d", &M);
+
+    // Perform M removals
+    for (int counter = 1; counter <= M; counter++) {
+        scanf("%d", &indexToRemove);
+        removeAt(indexToRemove);
+    }
+
+    // Compute total score of remaining elements
+    for (index = 0; index < size; index++) {
+        totalScore += list[index];
+    }
+
+    // Print the final total score
+    printf("%d", totalScore);
+
+    return 0;
+}
