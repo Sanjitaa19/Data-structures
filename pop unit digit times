@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include "stack.h"
+
+int main() {
+    int n;
+    scanf("%d", &n);
+    
+    int nn;
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &nn);
+        
+        if (nn % 10 == 0) {
+            push(nn);
+        } else {
+            int k = nn % 10;  // Extract unit digit
+            if (getSize() >= k) {  // Ensure we have enough elements to pop
+                for (int j = 0; j < k; j++) {
+                    pop();
+                }
+            }
+        }
+    }
+
+    while (getSize() > 0) {  // Correct condition for popping
+        printf("%d ", pop());
+    }
+
+    return 0;
+}
