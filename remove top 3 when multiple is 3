@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "stack.h"
+
+int main() {
+    int n;
+    scanf("%d", &n);
+    int nn;
+
+    while (n--) {
+        scanf("%d", &nn);
+        if (nn % 3 != 0) {  // Fixing the condition syntax
+            push(nn);
+        } else {
+            pop();
+             pop();
+            pop();
+        }
+    }
+
+    while (getSize() > 0) {
+        printf("%d ", pop());
+    }
+    
+    return 0;
+}
