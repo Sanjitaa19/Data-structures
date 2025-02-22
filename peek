@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "stack.h"
+
+int main() {
+    int n;
+    scanf("%d", &n);
+    int nn;
+
+    for (int i = 0; i < n; i++) {  // Using for loop instead of while
+        scanf("%d", &nn);
+        if (nn % 3 != 0) {
+            push(nn);
+        } else {
+            if (getSize() >= 3) {  // Ensuring we have at least 3 elements before popping
+                pop();
+                pop();
+                pop();
+                printf("%d ", peek());
+            }
+        }
+    }
+
+    // Keeping the last while loop as you requested
+    while (getSize() > 0) {
+        printf("%d ", pop());
+    }
+
+    return 0;
+}
