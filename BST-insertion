@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// Structure definition
+struct Node {
+    int data;
+    struct Node *left, *right;
+};
+
+struct Node *root = NULL;
+
+// Function to create a new node
+struct Node* newnode(int item) {
+    struct Node *node = (struct Node*) malloc(sizeof(struct Node));
+    node->data = item;
+    node->left = NULL;
+    node->right = NULL;
+    return node;
+}
+
+// Preorder traversal function
+void preorder(struct Node *root) {
+    if (root != NULL) {
+        printf("%d ", root->data);
+        preorder(root->left);
+        preorder(root->right);
+    }
+}
+
+// Insert function (already correct)
+struct Node* insert(struct Node *node, int data) {
+    if (node == NULL) 
+        return newnode(data);
+    
+    if (data < node->data)
+        node->left = insert(node->left, data);
+    else if (data > node->data)
+        node->right = insert(node->right, data);
+
+    return node;
+}
+
+int main() {
+    int N, data, ctr;
+    scanf("%d", &N);
+
+    for (ctr = 1; ctr <= N; ctr++) {
+        scanf("%d", &data);
+        root = insert(root, data);  // FIXED: Assign root properly
+    }
+
+    preorder(root);  // Print the tree in preorder
+    return 0;
+}
