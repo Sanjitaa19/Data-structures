@@ -1,0 +1,57 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// Define the structure of a binary tree node
+struct node {
+    int data;
+    struct node *left, *right;
+};
+
+// Function to create a new node
+struct node *newNode(int item) {
+    struct node *temporary = (struct node *)malloc(sizeof(struct node));
+    temporary->data = item;
+    temporary->left = temporary->right = NULL;
+    return temporary;
+}
+
+// Function for inorder traversal (Left → Root → Right)
+void inorder(struct node *root) {
+    if (root != NULL) {
+        inorder(root->left);   // Visit left subtree
+        printf("%d ", root->data); // Visit root
+        inorder(root->right);  // Visit right subtree
+    }
+}
+
+// Function to insert a new node into the BST
+struct node *insert(struct node *node, int data) {
+    if (node == NULL)  
+        return newNode(data);  // Create new node if empty
+
+    if (data < node->data)
+        node->left = insert(node->left, data); // Insert in left subtree
+    else if (data > node->data)
+        node->right = insert(node->right, data); // Insert in right subtree
+
+    return node;
+}
+
+int main() {
+    struct node *root = NULL;
+
+    // Insert nodes into BST
+    root = insert(root, 9);
+    insert(root, 7);
+    insert(root, 5);
+    insert(root, 8);
+    insert(root, 14);
+    insert(root, 11);
+    insert(root, 16);
+
+    // Print inorder traversal
+    printf("The inorder traversal is:\n");
+    inorder(root);
+
+    return 0;
+}
