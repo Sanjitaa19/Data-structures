@@ -1,0 +1,20 @@
+void insert(struct Node *currentNode, int data) {
+    if (currentNode == NULL) {
+        root = newnode(data);
+        return;
+    }
+    
+    if (data < currentNode->data) {
+        if (currentNode->left != NULL) {
+            insert(currentNode->left, data);
+        } else {
+            currentNode->left = newnode(data);
+        }
+    } else {
+        if (currentNode->right != NULL) {
+            insert(currentNode->right, data);
+        } else {
+            currentNode->right = newnode(data);
+        }
+    }
+}
