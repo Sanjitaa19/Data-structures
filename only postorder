@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "insert.h"  // Ensure this file contains insert function properly
+
+// Define Node structure
+struct Node {
+    int data;
+    struct Node *left, *right;
+};
+
+struct Node *root = NULL;  // Initialize root
+
+// **Postorder Traversal**
+void printPostorder(struct Node *root) {
+    if (root != NULL) {
+        printPostorder(root->left);
+        printPostorder(root->right);
+        printf("%d ", root->data);
+    }
+}
+
+int main() {
+    int N, data, ctr;
+    scanf("%d", &N);
+    
+    for (ctr = 1; ctr <= N; ctr++) {
+        scanf("%d", &data);
+        root = insert(root, data);  // Assign new root after insertion
+    }
+
+    printPostorder(root);  // Call postorder traversal
+    return 0;
+}
